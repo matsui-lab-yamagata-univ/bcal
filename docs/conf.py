@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 # Make the ``bcal`` package importable for autodoc (src layout).
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 # -- Project information -----------------------------------------------------
 project = "bcal"
@@ -21,7 +21,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.viewcode",
     "sphinx.ext.intersphinx",
-    "sphinx.ext.githubpages",
 ]
 
 templates_path = ["_templates"]
