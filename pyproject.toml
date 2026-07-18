@@ -46,7 +46,7 @@ dev = [
 ]
 
 [tool.taskipy.tasks]
-generate-docs = "sphinx-apidoc -f -T -o docs-src/source src && sphinx-build -M clean docs-src/source docs && sphinx-build -b html docs-src/source docs && touch docs/.nojekyll"
+generate-docs = "sphinx-apidoc -f -T -o docs-src/source src && sphinx-build -M clean docs-src/source docs && sphinx-build -b html docs-src/source docs"
 
 [project.scripts]
 bcal = "bcal.main:main"
