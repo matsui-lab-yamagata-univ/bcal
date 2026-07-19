@@ -1,6 +1,7 @@
 # bcal: 有機半導体結晶のバンド構造・有効質量計算プログラム
 [![Python](https://img.shields.io/badge/python-3.11%20or%20newer-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![docs](https://img.shields.io/badge/docs-here-11419572)](https://matsui-lab-yamagata-univ.github.io/bcal/)
 
 [English](README.md) / 日本語
 
