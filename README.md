@@ -1,6 +1,9 @@
 # bcal: Program for the calculation of band structure and effective mass for organic semiconductor crystals
 [![Python](https://img.shields.io/badge/python-3.11%20or%20newer-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![docs](https://img.shields.io/badge/docs-here-11419572)](https://matsui-lab-yamagata-univ.github.io/bcal/)
+
+English / [日本語](README_ja.md)
 
 # Overview
 `bcal` is a tool for calculating the band structure and effective masses of organic semiconductors. Starting from a crystal structure (CIF), it generates quantum-chemistry inputs, runs DFT calculations, extracts the molecular-orbital matrices, and builds a tight-binding Hamiltonian. From the resulting band dispersion it reports the HOMO and LUMO band edges together with their principal effective masses and axis vectors, and draws the band diagram along a configurable high-symmetry k-path.
