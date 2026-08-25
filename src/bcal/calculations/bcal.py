@@ -40,6 +40,7 @@ from bcal.utils.log import get_logger
 logger = get_logger(__name__)
 
 HARTREE_TO_EV: float = 27.211386245988
+INVERSE_MASS_ERROR: float = 1e-10  # 1/m_e
 GAUSSIAN_ENGINES = {"g16", "g09"}
 PYSCF_ENGINES = {"pyscf", "gpu4pyscf"}
 
@@ -1282,6 +1283,7 @@ class Bcal:
         stored as ``homo_em``/``lumo_em`` and
         ``homo_em_vectors``/``lumo_em_vectors``; the returned ``(6,)`` array
         keeps the original unsorted layout for backward compatibility.
+        Directions with nearly zero inverse mass are reported as ``inf``.
         """
         rec_lattice = self.cal_reciprocal_lattice()
         rec_lattice_length = np.sqrt(np.sum(rec_lattice ** 2, axis=1))
@@ -1332,8 +1334,8 @@ class Bcal:
         homo_em_tensor = prefactor * self._em_tensor(around_homo_ene, eps)
         lumo_em_tensor = prefactor * self._em_tensor(around_lumo_ene, eps)
 
-        homo_em_vals, homo_em_vecs = LA.eig(LA.inv(homo_em_tensor))
-        lumo_em_vals, lumo_em_vecs = LA.eig(LA.inv(lumo_em_tensor))
+        homo_em_vals, homo_em_vecs = _principal_em(homo_em_tensor, "HOMO")
+        lumo_em_vals, lumo_em_vecs = _principal_em(lumo_em_tensor, "LUMO")
         self.homo_em, self.homo_em_vectors = _sort_em(homo_em_vals, homo_em_vecs)
         self.lumo_em, self.lumo_em_vectors = _sort_em(lumo_em_vals, lumo_em_vecs)
         effective_mass = np.concatenate([homo_em_vals, lumo_em_vals])
@@ -1611,6 +1613,23 @@ def _self_term_ket(ket: np.ndarray, mat: np.ndarray) -> np.ndarray:
         vec = ket[:, i, :].reshape(ket.shape[0], 1, ket.shape[2])
         out[:, :, i] = (vec @ mat @ vec.transpose(0, 2, 1)).reshape(ket.shape[0], 1)
     return out
+
+
+def _principal_em(tensor: np.ndarray, band: str) -> tuple[np.ndarray, np.ndarray]:
+    """Calculate principal effective masses and their axes."""
+    if not np.isfinite(tensor).all():
+        raise ValueError(f"{band} effective-mass tensor contains NaN or inf.")
+
+    inv_masses, vectors = LA.eigh(tensor)
+    masses = np.array([
+        np.inf if abs(value) < INVERSE_MASS_ERROR else 1.0 / value
+        for value in inv_masses
+    ])
+    if np.isinf(masses).any():
+        logger.warning(
+            f"{band} band curvature is nearly zero; effective mass is set to inf."
+        )
+    return masses, vectors
 
 
 def _sort_em(vals: np.ndarray, vecs: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
