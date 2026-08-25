@@ -250,7 +250,6 @@ def compare_coordinates(
                 atoms_order = temp_atoms_order
 
     if min_distance >= 1e-8:
-        logger.warning("coordinates are strange.")
         return None, None
 
     return np.array([bool_trans, best_symop[0], best_symop[1], best_symop[2]]), atoms_order
@@ -389,25 +388,29 @@ class InputMaker:
                     else:
                         match = np.array([], dtype=np.int64)
 
+                    ti_flg = None
                     atoms_order_list: Optional[List[int]] = None
-                    if len(match) > 0:
-                        ti_flg = int(match[0])
+                    for cand_idx in match:
                         bool_trans, atoms_order = compare_coordinates(
-                            np.array([cent_cart, nei_cart]), dimers_coo[ti_flg]
+                            np.array([cent_cart, nei_cart]), dimers_coo[cand_idx]
                         )
                         if bool_trans is None:
-                            logger.warning(
-                                f"skipping pair "
-                                f"(cent={cent_idx}, ijk={ijk}, nei={nei_idx}): "
-                                "coordinate comparison failed."
-                            )
                             continue
+                        ti_flg = int(cand_idx)
                         if atoms_order is not None:
                             need_sort = 1
                             atoms_order_list = atoms_order.astype(np.int64).tolist()
                         else:
                             need_sort = 0
-                    else:
+                        break
+
+                    if ti_flg is None:
+                        if len(match) > 0:
+                            logger.warning(
+                                f"No identical dimer was found for pair "
+                                f"(cent={cent_idx}, ijk={ijk}, nei={nei_idx}); "
+                                "creating a new dimer type."
+                            )
                         ti_flg = dimer_type_count
                         dimer_syms = np.concatenate([cent_syms, nei_syms])
                         file_name = f"{self.name}_dimer_{ti_flg:03d}"
