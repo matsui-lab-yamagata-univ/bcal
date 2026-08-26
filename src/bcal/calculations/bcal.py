@@ -1616,7 +1616,37 @@ def _self_term_ket(ket: np.ndarray, mat: np.ndarray) -> np.ndarray:
 
 
 def _principal_em(tensor: np.ndarray, band: str) -> tuple[np.ndarray, np.ndarray]:
-    """Calculate principal effective masses and their axes."""
+    """Diagonalize an inverse effective-mass tensor into principal masses and axes.
+
+    The tensor is the band curvature scaled to units of ``1 / m_e``, so its
+    eigenvalues are inverse principal masses and the corresponding masses are
+    their reciprocals. An eigenvalue whose magnitude is below
+    :data:`INVERSE_MASS_ERROR` is treated as zero curvature and the mass is
+    reported as ``inf`` instead of diverging.
+
+    Parameters
+    ----------
+    tensor : numpy.ndarray, shape (3, 3)
+        Symmetric inverse effective-mass tensor in units of ``1 / m_e``.
+    band : str
+        Band label (e.g. ``"HOMO"``, ``"LUMO"``) used in the error and warning
+        messages.
+
+    Returns
+    -------
+    masses : numpy.ndarray, shape (3,)
+        Principal effective masses in units of ``m_e``, in the eigenvalue order
+        returned by :func:`numpy.linalg.eigh` (ascending inverse mass); the sign
+        is preserved and ``inf`` marks a nearly flat direction.
+    vectors : numpy.ndarray, shape (3, 3)
+        Unit principal-axis vectors as columns (Cartesian reciprocal-space),
+        ``vectors[:, i]`` paired with ``masses[i]``.
+
+    Raises
+    ------
+    ValueError
+        If `tensor` contains NaN or inf.
+    """
     if not np.isfinite(tensor).all():
         raise ValueError(f"{band} effective-mass tensor contains NaN or inf.")
 
