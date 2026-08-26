@@ -92,7 +92,7 @@ def main() -> None:
         )
 
     print("----------------------------------------")
-    print(" bcal 0.1.0 (2026/06/18) by Matsui Lab. ")
+    print(" bcal 0.1.0 (2026/08/26) by Matsui Lab. ")
     print("----------------------------------------")
     print(f"\nInput File Name: {args.file}")
     Tcal.print_timestamp()
