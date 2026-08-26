@@ -326,7 +326,7 @@ CIF files come in various formats, and some may not be readable by bcal. Please 
 
 # Authors
 [Matsui Laboratory, Research Center for Organic Electronics (ROEL), Yamagata University](https://matsui-lab.yz.yamagata-u.ac.jp/index-e.html)  
-Tomoharu Okada, Koki Ozawa, Hiroyuki Matsui  
+Tomoharu Okada, Koki Ozawa, Yu Homma, Hiroyuki Matsui  
 Email: h-matsui[at]yz.yamagata-u.ac.jp  
 Please replace [at] with @
 
