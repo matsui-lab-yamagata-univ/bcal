@@ -35,22 +35,22 @@ Important notice
 Installing bcal
 ---------------
 
-After cloning the repository, run the install command from the repository root
-for the backend you intend to use.
+Install from PyPI, choosing the extra that matches the backend you intend to
+use.
 
 Using Gaussian 09 or 16 (without PySCF)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-   pip install -e .
+   pip install yu-bcal
 
 Using PySCF (CPU only, macOS / Linux / WSL2)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-   pip install -e ".[pyscf]"
+   pip install "yu-bcal[pyscf]"
 
 Using GPU acceleration with PySCF (macOS / Linux / WSL2)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -69,26 +69,26 @@ If your CUDA Toolkit version is 13.x:
 
 .. code-block:: bash
 
-   pip install -e ".[gpu4pyscf-cuda13]"
+   pip install "yu-bcal[gpu4pyscf-cuda13]"
 
 If your CUDA Toolkit version is 12.x:
 
 .. code-block:: bash
 
-   pip install -e ".[gpu4pyscf-cuda12]"
+   pip install "yu-bcal[gpu4pyscf-cuda12]"
 
 If your CUDA Toolkit version is 11.x:
 
 .. code-block:: bash
 
-   pip install -e ".[gpu4pyscf-cuda11]"
+   pip install "yu-bcal[gpu4pyscf-cuda11]"
 
 Using ORCA 6.1.0 or newer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
-   pip install -e ".[orca]"
+   pip install "yu-bcal[orca]"
 
 Verify Installation
 -------------------
@@ -131,6 +131,47 @@ Basic Examples
 
 Options
 -------
+
+.. list-table::
+   :header-rows: 1
+   :widths: 8 28 64
+
+   * - Short
+     - Long
+     - Explanation
+   * - ``-h``
+     - ``--help``
+     - Show options description.
+   * - ``-M``
+     - ``--method METHOD/BASIS``
+     - Calculation method and basis set in "METHOD/BASIS" format. (default: ``PBEPBE/6-31G(d,p)``)
+   * - ``-c``
+     - ``--cpu N``
+     - Set the number of CPUs. (default: ``4``)
+   * - ``-m``
+     - ``--mem N``
+     - Set the memory size in GB. (default: ``10``)
+   * - ``-o``
+     - ``--output DIR``
+     - Output directory for the results. (default: the directory of the input CIF file)
+   * - ``-r``
+     - ``--read``
+     - Read existing log files without executing calculations.
+   * -
+     - ``--engine ENGINE``
+     - Quantum-chemistry backend: ``g16``, ``g09``, ``pyscf``, ``gpu4pyscf``, ``orca``. (default: ``g16``)
+   * -
+     - ``--resume``
+     - Resume an interrupted calculation from the last incomplete step.
+   * -
+     - ``--num-mo N``
+     - Number of MOs per molecule on each side of the frontier; total MOs = ``2 * N``. (default: ``15``)
+   * -
+     - ``--band-path PATH``
+     - High-symmetry k-path for the band diagram, given as single-character labels (``G`` = Gamma). (default: ``XGYGZ``)
+   * -
+     - ``--bse``
+     - Use Basis Set Exchange to obtain basis sets. (``pyscf``/``gpu4pyscf`` only)
 
 Calculation Settings
 ~~~~~~~~~~~~~~~~~~~~~~

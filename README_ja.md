@@ -1,6 +1,7 @@
 # bcal: 有機半導体結晶のバンド構造・有効質量計算プログラム
 [![Python](https://img.shields.io/badge/python-3.11%20or%20newer-blue)](https://www.python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![PyPI](https://img.shields.io/pypi/v/yu-bcal)](https://pypi.org/project/yu-bcal/)
 [![docs](https://img.shields.io/badge/docs-here-11419572)](https://matsui-lab-yamagata-univ.github.io/bcal/)
 
 [English](README.md) / 日本語
@@ -29,16 +30,16 @@
 * PySCF は macOS / Linux に対応しています。Windows ユーザーは WSL2 を使用してください。
 
 # インストール
-リポジトリをクローンした後、使用するバックエンドに応じてリポジトリのルートで以下のインストールコマンドを実行してください。
+PyPI から、使用するバックエンドに応じた extra を選んでインストールしてください。
 
 ## Gaussian 09 または 16 を使用（PySCF なし）
 ```bash
-pip install -e .
+pip install yu-bcal
 ```
 
 ## PySCF を使用（CPU のみ、macOS / Linux / WSL2）
 ```bash
-pip install -e ".[pyscf]"
+pip install "yu-bcal[pyscf]"
 ```
 
 ## PySCF で GPU アクセラレーションを使用（macOS / Linux / WSL2）
@@ -50,20 +51,20 @@ nvcc --version
 ### 2. CUDA Toolkit バージョンに対応する GPU extra をインストール
 CUDA Toolkit が 13.x の場合:
 ```bash
-pip install -e ".[gpu4pyscf-cuda13]"
+pip install "yu-bcal[gpu4pyscf-cuda13]"
 ```
 CUDA Toolkit が 12.x の場合:
 ```bash
-pip install -e ".[gpu4pyscf-cuda12]"
+pip install "yu-bcal[gpu4pyscf-cuda12]"
 ```
 CUDA Toolkit が 11.x の場合:
 ```bash
-pip install -e ".[gpu4pyscf-cuda11]"
+pip install "yu-bcal[gpu4pyscf-cuda11]"
 ```
 
 ## ORCA 6.1.0 以降を使用
 ```bash
-pip install -e ".[orca]"
+pip install "yu-bcal[orca]"
 ```
 
 ## インストールの確認
@@ -99,6 +100,20 @@ bcal xxx.cif --engine pyscf
 ```
 
 ## オプション
+
+|ショート|ロング|説明|
+|----|----|----|
+|-h|--help|オプションの説明を表示します。|
+|-M|--method METHOD/BASIS|"METHOD/BASIS" 形式で計算手法と基底関数系を指定します。（デフォルト: PBEPBE/6-31G(d,p)）|
+|-c|--cpu N|使用する CPU 数を指定します。（デフォルト: 4）|
+|-m|--mem N|メモリ量を GB 単位で指定します。（デフォルト: 10）|
+|-o|--output DIR|結果の出力ディレクトリを指定します。（デフォルト: 入力 CIF ファイルのあるディレクトリ）|
+|-r|--read|新たに計算を実行せず、既存のログファイルから読み込みます。|
+||--engine ENGINE|量子化学計算のバックエンドを指定します: g16, g09, pyscf, gpu4pyscf, orca。（デフォルト: g16）|
+||--resume|中断した計算を、最後の未完了ステップから再開します。|
+||--num-mo N|フロンティア軌道の各側について 1 分子あたり保持する MO 数。MO の総数は 2 * N。（デフォルト: 15）|
+||--band-path PATH|バンド図の高対称 k 経路を 1 文字ラベルの並びで指定します（G = Γ 点）。（デフォルト: XGYGZ）|
+||--bse|Basis Set Exchange から基底関数系を取得します。（PySCF/gpu4pyscf のみ）|
 
 ### 計算設定
 
