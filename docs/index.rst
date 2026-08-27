@@ -10,6 +10,10 @@ bcal: Program for the calculation of band structure and effective mass for organ
    :target: https://opensource.org/licenses/MIT
    :alt: License: MIT
 
+.. image:: https://img.shields.io/pypi/v/yu-bcal
+   :target: https://pypi.org/project/yu-bcal/
+   :alt: PyPI
+
 Overview
 ========
 

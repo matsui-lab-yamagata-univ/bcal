@@ -1,5 +1,5 @@
 [project]
-name = "bcal-dev"
+name = "yu-bcal"
 version = "0.1.0"
 description = "Program for the calculation of band structure and effective mass using the tight-binding method"
 requires-python = ">=3.11"
@@ -12,8 +12,10 @@ dependencies = [
     "yu-tcal>=5.0.2",
 ]
 authors = [
-    {name = "Hiroyuki Matsui", email = "h-matsui@yz.yamagata-u.ac.jp"},
     {name = "Tomoharu Okada"},
+    {name = "Koki Ozawa"},
+    {name = "Yu Homma"},
+    {name = "Hiroyuki Matsui", email = "h-matsui@yz.yamagata-u.ac.jp"},
 ]
 readme = "README.md"
 keywords = ["organic semiconductor", "band structure", "effective mass", "tight-binding method"]
