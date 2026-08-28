@@ -1,6 +1,6 @@
 [project]
 name = "yu-bcal"
-version = "0.1.0"
+dynamic = ["version"]
 description = "Program for the calculation of band structure and effective mass using the tight-binding method"
 requires-python = ">=3.11"
 dependencies = [
@@ -35,6 +35,9 @@ classifiers = [
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/bcal/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bcal"]
@@ -79,6 +82,3 @@ gpu4pyscf-cuda13 = [
 orca = [
     "orca-pi",
 ]
-
-[tool.setuptools.packages.find]
-where = ["src"]
