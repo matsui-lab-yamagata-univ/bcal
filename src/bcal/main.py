@@ -6,6 +6,7 @@ import numpy as np
 from mcal import CifReader
 from tcal import Tcal
 
+from bcal import __date__, __version__
 from bcal.calculations.bcal import Bcal, HIGH_SYMMETRY_POINTS
 from bcal.utils.input_maker import InputMaker
 from bcal.utils.log import configure_logging, get_logger
@@ -91,9 +92,10 @@ def main() -> None:
             f"Available: {' '.join(sorted(HIGH_SYMMETRY_POINTS))}"
         )
 
-    print("----------------------------------------")
-    print(" bcal 0.1.0 (2026/08/26) by Matsui Lab. ")
-    print("----------------------------------------")
+    banner = f" bcal {__version__} ({__date__}) by Matsui Lab. "
+    print("-" * len(banner))
+    print(banner)
+    print("-" * len(banner))
     print(f"\nInput File Name: {args.file}")
     Tcal.print_timestamp()
     start_time = time()
