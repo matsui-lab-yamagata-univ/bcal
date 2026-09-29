@@ -237,8 +237,8 @@ def compare_coordinates(
                 np.sqrt((temp_distance[1, :, 0, :] ** 2).sum(axis=-1)).min(axis=-1),
             ]).mean()
             distance2_atoms_order = np.concatenate([
-                np.sqrt((temp_distance[0, :, 1, :] ** 2).sum(axis=-1)).argmin(axis=-1),
                 np.sqrt((temp_distance[1, :, 0, :] ** 2).sum(axis=-1)).argmin(axis=-1),
+                np.sqrt((temp_distance[0, :, 1, :] ** 2).sum(axis=-1)).argmin(axis=-1),
             ])
 
             distance = distance1 if distance1 < distance2 else distance2
