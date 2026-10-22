@@ -42,6 +42,9 @@ path = "src/bcal/__init__.py"
 [tool.hatch.build.targets.wheel]
 packages = ["src/bcal"]
 
+[tool.hatch.build.targets.sdist]
+exclude = [".github"]
+
 [dependency-groups]
 dev = [
     "autodoc-pydantic>=2.2.0",
