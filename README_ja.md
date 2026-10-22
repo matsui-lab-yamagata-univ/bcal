@@ -15,8 +15,8 @@
 * Pandas
 * SciPy
 * Matplotlib
-* yu-mcal>=0.7.1
-* yu-tcal>=5.0.2
+* yu-mcal>=0.8.3
+* yu-tcal>=5.0.6
 
 ## 量子化学計算ツール
 以下のいずれか 1 つ以上が必要です:
