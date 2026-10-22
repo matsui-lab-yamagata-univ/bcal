@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.11"
 resolution-markers = [
     "python_full_version >= '3.14' and sys_platform == 'win32'",
@@ -12,6 +12,9 @@ resolution-markers = [
     "python_full_version < '3.12' and sys_platform == 'emscripten'",
     "python_full_version < '3.12' and sys_platform != 'emscripten' and sys_platform != 'win32'",
 ]
+
+[manifest]
+constraints = [{ name = "certifi", specifier = ">=2026.10.19" }]
 
 [[package]]
 name = "accessible-pygments"
@@ -114,11 +117,11 @@ wheels = [
 
 [[package]]
 name = "certifi"
-version = "2026.6.17"
+version = "2026.10.19"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c9/c7/424b75da314c1045981bd9777432fad05a9e0c69daa4ed7e308bbaffe405/certifi-2026.6.17.tar.gz", hash = "sha256:024c88eeec92ca068db80f02b8b07c9cef7b9fe261d1d535abfd5abd6f6af432", size = 134594, upload-time = "2026-06-17T10:31:07.894Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a6/bd/1436c50cc46699de0230fbaacc1d1de7bfec413176099949e9d5112e88f2/certifi-2026.10.19.tar.gz", hash = "sha256:035c1e85572b141bf1c3a3eff0e33a8eb74917522f2559075ff8d2fea780a1ae", size = 137598, upload-time = "2026-10-20T02:24:16.604Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ef/2f/c5464532e965badff2f4c4c1a3a83f5697f0d7c407ed0cda44aaa99bb451/certifi-2026.6.17-py3-none-any.whl", hash = "sha256:2227dcbaafe0d2f59279d1762ddddc37783ed4354594f194ffc31d20f41fc3db", size = 133289, upload-time = "2026-06-17T10:31:06.348Z" },
+    { url = "https://files.pythonhosted.org/packages/c4/51/29046e48f693c54e5b7412216d447a1d8362c9653148d98c02cdf65fa733/certifi-2026.10.19-py3-none-any.whl", hash = "sha256:42d35340cc5b9ba78e818ddbff0c5b1c2b779de448a340fd1b989f5fa8670e1b", size = 136464, upload-time = "2026-10-20T02:24:15.072Z" },
 ]
 
 [[package]]
@@ -2305,8 +2308,8 @@ requires-dist = [
     { name = "pyscf", marker = "extra == 'gpu4pyscf-cuda13'", specifier = ">=2.12.1" },
     { name = "pyscf", marker = "extra == 'pyscf'", specifier = ">=2.12.1" },
     { name = "scipy", specifier = ">=1.17.1" },
-    { name = "yu-mcal", specifier = ">=0.7.1" },
-    { name = "yu-tcal", specifier = ">=5.0.2" },
+    { name = "yu-mcal", specifier = ">=0.8.3" },
+    { name = "yu-tcal", specifier = ">=5.0.6" },
 ]
 provides-extras = ["gpu4pyscf-cuda11", "gpu4pyscf-cuda12", "gpu4pyscf-cuda13", "orca", "pyscf"]
 
@@ -2320,7 +2323,7 @@ dev = [
 
 [[package]]
 name = "yu-mcal"
-version = "0.7.1"
+version = "0.8.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "matplotlib" },
@@ -2329,20 +2332,20 @@ dependencies = [
     { name = "pandas" },
     { name = "yu-tcal" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/12/98/a13d5d779a871ac86d77c7ae8b97880eb694ca40b709d3e261ce03c32151/yu_mcal-0.7.1.tar.gz", hash = "sha256:4fa5f588117591b7c356ab24df790fa0c46bf91535e4e0d3144d0df737aaac9c", size = 402340, upload-time = "2026-06-17T16:58:22.41Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/83/e4/b4320d234bd76a015e4e7dfcdd188f2fb1124299b72125dad0bc7a1396ca/yu_mcal-0.8.3.tar.gz", hash = "sha256:341bc1b704d71d288d7e469b16f5e2c1ff4949ebae25bf1792c7c708bdfb5950", size = 187728, upload-time = "2026-10-22T08:26:39.174Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b3/e7/dce0a06dc4ee22780ff992104782c2b4668e4e70c0f26285f76d90cd3d76/yu_mcal-0.7.1-py3-none-any.whl", hash = "sha256:8b4535762a5de6cf02675812438eef3cabc3acc0469308eaa3a139f70b2ad0be", size = 45675, upload-time = "2026-06-17T16:58:20.519Z" },
+    { url = "https://files.pythonhosted.org/packages/f5/0e/a58c7bf0b1ef04949d0f9835cb16f6c278272d4d47f9aa4bf4b11e3aafa3/yu_mcal-0.8.3-py3-none-any.whl", hash = "sha256:c0d637c8e96323c863a714ed422cce913eb507919dc128a2f0ec913678274110", size = 49111, upload-time = "2026-10-22T08:26:37.761Z" },
 ]
 
 [[package]]
 name = "yu-tcal"
-version = "5.0.2"
+version = "5.0.6"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c7/e9/cbe0d9655581dbfc9ea22525539a17863b900ea824477b50a32beb1bd1d3/yu_tcal-5.0.2.tar.gz", hash = "sha256:20917074ecd086974934d20f302a0335ab27f4127f7c81c7e9ee75d1c1c8c88d", size = 54792230, upload-time = "2026-06-17T16:25:45.007Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/5a/95/4a29d87b2e37ffb546e99a103894ca7f4f20a62e40effa1f31fc341975cc/yu_tcal-5.0.6.tar.gz", hash = "sha256:0860bef8e7ada2f34d6472c3dbd2a9d210463a6e184df833e65e18d939a6c2e7", size = 54640459, upload-time = "2026-10-22T07:44:11.114Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/85/6c/cfe413ddd3a307a9aa1d3b67d06dae78c3480662f11f46b5ae131665a0e3/yu_tcal-5.0.2-py3-none-any.whl", hash = "sha256:0a86de0053b6f7fa977f403acc6a96be08b8114fc9a56c4b86661752c1cafb6c", size = 25913, upload-time = "2026-06-17T16:25:24.046Z" },
+    { url = "https://files.pythonhosted.org/packages/8b/94/0bb2256c596f328fea5129ecf7383189ac87a50c5d4162c571917a9de7e7/yu_tcal-5.0.6-py3-none-any.whl", hash = "sha256:f1ad6db361fd4e2e3d19aaad51339e3c4f466f377818fd752bfe9ba9016d1ac3", size = 26011, upload-time = "2026-10-22T07:44:08.866Z" },
 ]
